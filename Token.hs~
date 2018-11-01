@@ -1,0 +1,46 @@
+{- Author: Richard Eisenberg
+   File: Token.hs
+
+   Defines lexical tokens.
+-}
+
+module Token where
+
+import Syntax
+
+data Token
+  = LiteralT Value     -- numbers, booleans
+  | IfT                -- "if"
+  | ThenT              -- "then"
+  | ElseT              -- "else"
+  | OpT Op             -- binary operators
+  | NotT               -- "not"
+  | LambdaT            -- "\"
+  | VarT String        -- e.g. "x" "y"
+  | DotT               -- "."
+  | AppT               -- "@"
+  deriving Show
+
+{- 5.
+
+a. if < 2 1 then true else false
+
+[IfT, OpT LessThan, LiteralT (IntegerV 2), LiteralT (IntegerV 1), ThenT,LiteralT (BoolV true), ElseT, LiteralT (BoolV false)]
+
+b. hello { there } people
+
+[VarT "hello", VarT "people"]
+
+c. (+12h)
+
+[OpT Plus, LiteralT (IntegerV 12), VarT "h"]
+
+d. iff thenn
+
+[VarT "iff", VarT "thenn"]
+
+e. tok33<=
+
+[VarT "tok", LiteralT (IntegerV 33), OpT LessThanEquals]
+
+-}
