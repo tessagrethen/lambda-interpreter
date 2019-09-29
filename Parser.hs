@@ -1,7 +1,6 @@
 {- Author: Tessa Pham
    File: Parser.hs
-
-   Parses the Preλ syntax
+   Description: Parses the Pre-λ syntax.
 -}
 
 module Parser where
@@ -9,9 +8,9 @@ module Parser where
 import Token
 import Syntax
 
--- Parse an expression, returning the parsed expression
--- and a list of unconsumed tokens
--- Calls `error` if the list of tokens has no valid parse.
+-- Parse an expression, returning the parsed expression and
+-- a list of unconsumed tokens.
+-- Call `error` if the list of tokens has no valid parse.
 
 getExpr :: [Token] -> Expr
 getExpr ts = fst (parse ts)

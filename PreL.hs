@@ -1,6 +1,6 @@
-{- File: PreL.hs
-
-   Defines a main action for the Preλ interpreter, as well as functions
+{- Author: Tessa Pham
+   File: PreL.hs
+   Description: Defines a main action for the Pre-λ interpreter, as well as functions
    that combine multiple interpretation phases.
 -}
 
@@ -35,9 +35,8 @@ main = do
   main
 
 -- Lex and parse an expression string.
--- Calls `error` if the input is somehow malformed.
+-- Call `error` if the input is somehow malformed.
 lexParse :: String -> Expr
---lexParse = error "unimplemented"
 lexParse str
   | length leftover == 0 = ex
   | otherwise = error "malformed input"
@@ -45,8 +44,7 @@ lexParse str
         leftover = snd (parse (lexPreL str))
 
 -- Lex, parse, and evaluate an expression string.
--- Calls `error` if the input is somehow malformed or cannot be
--- evaluated.
+-- Call `error` if the input is somehow malformed or cannot be evaluated.
 evalString :: String -> Value
 evalString str
   = eval (lexParse str)

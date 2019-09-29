@@ -1,7 +1,6 @@
 {- Author: Tessa Pham
    File: Lexer.hs
-
-   Lexes the syntax for the Preλ interpreter
+   Description: Lexes the syntax for the Pre-λ interpreter.
 -}
 
 module Lexer where
@@ -12,9 +11,8 @@ import Text.Read
 import Token
 import Syntax
 
--- Lex a Preλ expression into a list of tokens
--- Calls `error` if there is a lexical error (something that
--- doesn't lex)
+-- Lex a Preλ expression into a list of tokens.
+-- Call `error` if there is a lexical error (something that doesn't lex).
 
 type Assoc k v = [(k, v)]
 
@@ -88,7 +86,6 @@ findToken (c:str)
   | isStartCmt c && not (isComment str) = error "unterminated comment"
   | otherwise = (c:str)
 
--- Maybe I don't need to use cutString if I only use span?
 cutString :: String -> String -> String
 cutString [_] [] = []
 cutString substr str = drop (length substr) str

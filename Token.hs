@@ -1,6 +1,5 @@
 {- File: Token.hs
-
-   Defines lexical tokens.
+   Description: Defines lexical tokens.
 -}
 
 module Token where

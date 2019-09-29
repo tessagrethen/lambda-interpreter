@@ -1,6 +1,5 @@
 {- File: Syntax.hs
-
-   Basic definitions for the abstract syntax tree.
+   Description: Basic definitions for the abstract syntax tree.
 -}
 
 module Syntax where

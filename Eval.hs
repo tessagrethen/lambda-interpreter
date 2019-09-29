@@ -1,15 +1,13 @@
 {- Author: Tessa Pham
    File: Eval.hs
-
-   Defines an evaluator for Preλ.
+   Description: Defines an evaluator for Preλ.
 -}
 
 module Eval where
 
 import Syntax
 
--- Evaluate an expression to a value. Calls `error` if
--- this is impossible.
+-- Evaluate an expression to a value. Call `error` if this is impossible.
 eval :: Expr -> Value
 eval (IfE ex1 ex2 ex3)
   | BoolV boolEx1 <- eval ex1, boolEx1 == True = eval ex2
@@ -28,9 +26,8 @@ eval (AppE (ValueE (LambdaV n1 ex1)) ex)
   | otherwise =  eval (subst ex1 n1 (eval ex))
 eval (AppE ex1 ex2) = eval (AppE (ValueE (eval ex1)) ex2)
 
--- All binary operators take two Integer arguments. This
--- function performs the operation on the arguments, returning
--- a Value.
+-- All binary operators take two Integer arguments. This function
+-- performs the operation on the arguments, returning a Value.
 performOp :: Op -> Integer -> Integer -> Value
 performOp Plus x y = IntegerV (x + y)
 performOp Minus x y = IntegerV (x - y)
@@ -43,7 +40,6 @@ performOp Equals x y = BoolV (x == y)
 performOp NotEquals x y = BoolV (x /= y)
 
 -- Substitute a value into an expression.
-
 subst :: Expr -> String -> Value -> Expr
 subst ex s val
   | (VarE n) <- ex, n <- s = ValueE val
